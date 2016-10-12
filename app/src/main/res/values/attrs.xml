@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DestinationView">
+        <attr name="fromAddress" format="string" />
+        <attr name="fromAddressColor" format="color" />
+        <attr name="toAddress" format="string" />
+        <attr name="toAddressColor" format="color" />
+        <attr name="destinationCount" format="integer" />
+        <attr name="radios" format="dimension" />
+    </declare-styleable>
+</resources>

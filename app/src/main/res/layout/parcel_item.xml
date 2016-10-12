@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="click.theawesome.mda.yourmechanic.ui.util.UnixDateConverter"/>
+
+        <variable
+            name="listener"
+            type="click.theawesome.mda.yourmechanic.ui.adapter.HighwayAdapter.Listener"/>
+
+        <variable
+            name="model"
+            type="click.theawesome.mda.yourmechanic.ui.model.Model"/>
+
+    </data>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="@{(view) -> listener.onItemClicked(view, model)}"
+        app:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="4dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/item_icon"
+                android:layout_width="@dimen/item_icon_size"
+                android:layout_height="@dimen/item_icon_size"
+                android:layout_marginRight="10dp"
+                />
+
+            <TextView
+                android:id="@+id/food_name"
+                style="@style/ItemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/item_icon"
+                android:text="@{model.name}"
+                tools:text="Food Name"
+                />
+
+
+            <TextView
+                android:id="@+id/delivery_time"
+                style="@style/ItemDeliveryTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/food_name"
+                android:layout_toRightOf="@id/item_icon"
+                android:text="@{UnixDateConverter.convert(model.time)}"
+                android:drawableLeft="@drawable/av_timer_wrapper"
+                tools:text="Delivery Time"
+                />
+
+            <include
+                layout="@layout/delivery_address_view"
+                app:model="@{model}"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+</layout>

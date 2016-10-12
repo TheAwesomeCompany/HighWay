@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="model"
+            type="click.theawesome.mda.yourmechanic.ui.model.Model"/>
+    </data>
+
+    <merge>
+
+        <click.theawesome.mda.yourmechanic.ui.view.DestinationView
+            android:id="@+id/destination_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/item_status_icon"
+            android:padding="10dp"
+            app:radios="5dp"
+            />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/destination_view"
+            android:layout_toRightOf="@id/item_status_icon"
+            android:paddingLeft="10dp"
+            >
+
+            <TextView
+                android:id="@+id/from_address"
+                style="@style/ItemAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:paddingRight="10dp"
+                android:text="@{model.fromAddress}"
+
+                tools:text="From Address"
+                />
+
+            <TextView
+                android:id="@+id/to_address"
+                style="@style/ItemAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-10dp"
+
+                android:layout_weight="1"
+                android:paddingRight="10dp"
+                android:text="@{model.toAddress}"
+
+                tools:text="To Address"
+                />
+
+        </android.support.v7.widget.LinearLayoutCompat>
+    </merge>
+
+</layout>

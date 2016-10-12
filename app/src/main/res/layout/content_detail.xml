@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <import type="click.theawesome.mda.yourmechanic.ui.util.UnixDateConverter"/>
+
+        <variable
+            name="model"
+            type="click.theawesome.mda.yourmechanic.ui.model.Model"/>
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="click.theawesome.mda.yourmechanic.ui.DetailActivity">
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/food_image_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/food_image"
+                android:transitionName="profile"
+                android:contentDescription="Food Image"
+                android:scaleType="centerCrop"
+                app:layout_aspectRatio="150%"
+                app:layout_widthPercent="100%"
+                />
+
+            <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_alignTop="@id/food_image"
+                android:layout_alignBottom="@id/food_image"
+                android:background="@drawable/shadow_from_bottom_to_top"
+                />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_above="@+id/food_delivery_state"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                app:srcCompat="@drawable/checkbox_marked_circle_outline"
+                />
+
+            <TextView
+                android:id="@id/food_delivery_state"
+                style="@style/ItemAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/food_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:text="@{model.state}"
+                android:textColor="@color/white"
+                tools:text="DELIVERED"
+                />
+
+            <TextView
+                android:id="@id/food_name"
+                style="@style/ItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/delivery_time"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:text="@{model.name}"
+                android:textColor="@color/white"
+                tools:text="Food Name"
+                />
+
+
+            <TextView
+                android:id="@id/delivery_time"
+                style="@style/ItemDeliveryTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/food_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:drawableLeft="@drawable/av_timer_wrapper"
+                android:text="@{UnixDateConverter.convert(model.time)}"
+                tools:text="Delivery Time"
+                />
+
+        </android.support.percent.PercentRelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/food_delivery_address_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/food_image_container"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <include
+                layout="@layout/from_to_address_view"
+                app:model="@{model}"
+                />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/food_map_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_above="@+id/food_bottom_container"
+            android:layout_below="@id/food_delivery_address_container"
+
+            android:scaleType="centerCrop"
+            />
+
+        <android.support.v7.widget.GridLayout
+            android:id="@id/food_bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+
+            app:columnCount="4"
+            app:orientation="horizontal"
+
+            app:rowCount="2"
+            app:useDefaultMargins="true"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+
+                app:srcCompat="@drawable/checkbox_blank_outline"
+
+                app:layout_gravity="center"
+                app:layout_rowSpan="2"
+                />
+
+            <TextView
+                style="@style/ItemAddress"
+                android:layout_width="0dp"
+                android:gravity="bottom"
+
+                android:text="CARGO"
+                app:layout_columnWeight="1"
+
+                app:layout_rowWeight="1"
+                tools:text="CARGO"
+                />
+
+            <TextView
+
+                style="@style/ItemAddress"
+                android:layout_width="0dp"
+                android:gravity="bottom"
+
+                android:text="OPTION"
+                app:layout_columnWeight="1"
+
+                app:layout_rowWeight="1"
+                tools:text="OPTION"
+                />
+
+            <TextView
+                style="@style/ItemAddress"
+                android:layout_width="0dp"
+                android:gravity="bottom"
+
+                android:text="ARRIVAL"
+                app:layout_columnWeight="1"
+
+                app:layout_rowWeight="1"
+                tools:text="ARRIVAL"
+                />
+
+            <TextView
+                style="@style/ItemName"
+                android:layout_width="0dp"
+                android:text="Large"
+                app:layout_columnWeight="1"
+
+                app:layout_rowWeight="1"
+                tools:text="Large"
+                />
+
+            <TextView
+                style="@style/ItemName"
+                android:layout_width="0dp"
+                android:text="Turtle"
+                app:layout_columnWeight="1"
+
+                app:layout_rowWeight="1"
+                tools:text="Turtle"
+                />
+
+            <TextView
+                style="@style/ItemName"
+                android:layout_width="0dp"
+                android:text="2 Days"
+                app:layout_columnWeight="1"
+
+                app:layout_rowWeight="1"
+                tools:text="2 Days"
+                />
+        </android.support.v7.widget.GridLayout>
+
+    </RelativeLayout>
+
+</layout>
